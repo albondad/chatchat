@@ -4,6 +4,7 @@ import {
   Heading,
   ConstrainedContent,
   CardsItem,
+  Messages,
   Cards,
 } from "../components";
 import { Fragment } from "react";
@@ -32,6 +33,7 @@ const Home: NextPage = () => {
           />
         </Cards>
         <Heading>Messages</Heading>
+        <Messages></Messages>
       </ConstrainedContent>
     </Fragment>
   );
