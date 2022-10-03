@@ -8,9 +8,30 @@ import {
   Messages,
   MessagesItem,
 } from "../components";
-import { Fragment } from "react";
+import { Fragment, useEffect, useState } from "react";
 
 const Home: NextPage = () => {
+  const [messagesState, setMessagesState] = useState<
+    {
+      user: string;
+      date: number;
+      message: string;
+    }[]
+  >([]);
+
+  useEffect(() => {
+    const socket = new WebSocket("wss://tso-take-home-chat-room.herokuapp.com");
+
+    socket.addEventListener("message", (event) => {
+      messagesState.push({
+        user: event.data.split(":")[0],
+        date: event.timeStamp,
+        message: event.data.split(":")[1],
+      });
+      setMessagesState([...messagesState]);
+    });
+  }, []);
+
   return (
     <Fragment>
       <Header />
@@ -35,11 +56,15 @@ const Home: NextPage = () => {
         </Cards>
         <Heading>Messages</Heading>
         <Messages>
-          <MessagesItem
-            user="test"
-            message="this is a test"
-            date="this is a test"
-          />
+          {messagesState.map((element) => {
+            return (
+              <MessagesItem
+                user={element.user}
+                message={element.message}
+                date={element.date}
+              />
+            );
+          })}
         </Messages>
       </ConstrainedContent>
     </Fragment>

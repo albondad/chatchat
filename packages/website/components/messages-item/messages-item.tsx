@@ -4,7 +4,7 @@ import { ComponentProps } from "react";
 type MessagesItemPropsType = {
   message?: string;
   user?: string;
-  date?: string;
+  date?: number;
 } & ComponentProps<typeof StyledDiv>;
 
 export const MessagesItem = ({
