@@ -1,5 +1,11 @@
 import type { NextPage } from "next";
-import { Header, Heading, ConstrainedContent, CardsItem } from "../components";
+import {
+  Header,
+  Heading,
+  ConstrainedContent,
+  CardsItem,
+  Cards,
+} from "../components";
 import { Fragment } from "react";
 
 const Home: NextPage = () => {
@@ -8,7 +14,23 @@ const Home: NextPage = () => {
       <Header />
       <ConstrainedContent>
         <Heading>Statistics</Heading>
-        <CardsItem></CardsItem>
+        <Cards>
+          <CardsItem
+            heading="Users"
+            value="00"
+            detail="Displaying All Users"
+          ></CardsItem>
+          <CardsItem
+            heading="Messages"
+            value="00"
+            detail="Filtered by: All Users"
+          />
+          <CardsItem
+            heading="Characters"
+            value="00"
+            detail="Filtered by: All Users"
+          />
+        </Cards>
         <Heading>Messages</Heading>
       </ConstrainedContent>
     </Fragment>
