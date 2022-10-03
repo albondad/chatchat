@@ -4,7 +4,7 @@ import { ComponentProps } from "react";
 type CardsItemPropsType = {
   detail?: string;
   heading?: string;
-  value?: string;
+  value?: string | number;
 } & ComponentProps<typeof StyledDiv>;
 
 export const CardsItem = ({

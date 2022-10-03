@@ -8,7 +8,7 @@ import {
   Messages,
   MessagesItem,
 } from "../components";
-import { Fragment, useEffect, useState } from "react";
+import { Fragment, useEffect, useState, useMemo } from "react";
 
 const Home: NextPage = () => {
   const [messagesState, setMessagesState] = useState<
@@ -23,14 +23,45 @@ const Home: NextPage = () => {
     const socket = new WebSocket("wss://tso-take-home-chat-room.herokuapp.com");
 
     socket.addEventListener("message", (event) => {
-      messagesState.push({
+      messagesState.unshift({
         user: event.data.split(":")[0],
         date: event.timeStamp,
         message: event.data.split(":")[1],
       });
+
       setMessagesState([...messagesState]);
     });
   }, []);
+
+  const usersCountMemo = useMemo(() => {
+    let newUsersCountMemo = 0;
+    const uniqueUsers: string[] = [];
+
+    messagesState.forEach((element) => {
+      if (!uniqueUsers.includes(element.user)) {
+        uniqueUsers.push(element.user);
+        newUsersCountMemo += 1;
+      }
+    });
+
+    return newUsersCountMemo;
+  }, [messagesState.length]);
+
+  const messagesCountMemo = useMemo(() => {
+    let newMessagesCountMemo = 0;
+    newMessagesCountMemo = messagesState.length;
+    return newMessagesCountMemo;
+  }, [messagesState.length]);
+
+  const charactersCountMemo = useMemo(() => {
+    let newCharactersCountMemo = 0;
+
+    messagesState.forEach((element) => {
+      newCharactersCountMemo += element.message.length;
+    });
+
+    return newCharactersCountMemo;
+  }, [messagesState.length]);
 
   return (
     <Fragment>
@@ -40,17 +71,17 @@ const Home: NextPage = () => {
         <Cards>
           <CardsItem
             heading="Users"
-            value="00"
+            value={usersCountMemo}
             detail="Displaying All Users"
-          ></CardsItem>
+          />
           <CardsItem
             heading="Messages"
-            value="00"
+            value={messagesCountMemo}
             detail="Filtered by: All Users"
           />
           <CardsItem
             heading="Characters"
-            value="00"
+            value={charactersCountMemo}
             detail="Filtered by: All Users"
           />
         </Cards>
