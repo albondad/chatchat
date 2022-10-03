@@ -10,6 +10,6 @@ export const StyledHeader = styled.header`
     font-weight: 700;
     height: 4rem;
     line-height: 1.5em;
-    margin-bottom: 2rem;
+    margin-bottom: 4rem;
   }
 `;
