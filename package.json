@@ -1,0 +1,8 @@
+{
+  "name": "chatchat",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/albondad/chatchat.git",
+  "author": "Al Bondad <albondad@gmail.com>",
+  "license": "MIT"
+}
