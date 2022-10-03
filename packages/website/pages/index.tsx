@@ -1,11 +1,12 @@
 import type { NextPage } from "next";
 import {
+  Cards,
+  CardsItem,
+  ConstrainedContent,
   Header,
   Heading,
-  ConstrainedContent,
-  CardsItem,
   Messages,
-  Cards,
+  MessagesItem,
 } from "../components";
 import { Fragment } from "react";
 
@@ -33,7 +34,13 @@ const Home: NextPage = () => {
           />
         </Cards>
         <Heading>Messages</Heading>
-        <Messages></Messages>
+        <Messages>
+          <MessagesItem
+            user="test"
+            message="this is a test"
+            date="this is a test"
+          />
+        </Messages>
       </ConstrainedContent>
     </Fragment>
   );
