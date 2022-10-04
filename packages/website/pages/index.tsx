@@ -27,7 +27,7 @@ const Home: NextPage = () => {
     {
       name: string;
     }[]
-  >([]);
+  >([{ name: "All" }]);
 
   const [wordsState, setWordsState] = useState<
     {
@@ -37,6 +37,8 @@ const Home: NextPage = () => {
     }[]
   >([]);
 
+  const [userNameState, setUserNameState] = useState("All");
+
   useEffect(() => {
     const socket = new WebSocket("wss://tso-take-home-chat-room.herokuapp.com");
 
@@ -44,9 +46,9 @@ const Home: NextPage = () => {
       const userName = event.data.split(":")[0];
       const message = event.data.split(":")[1];
       const date = event.timeStamp;
-      const words: string[] = message.split(" ");
+      const words: string[] = message.replace(".", "").split(" ");
 
-      if (messagesState.length >= 10) {
+      if (messagesState.length >= 100) {
         socket.close();
         return;
       }
@@ -116,21 +118,67 @@ const Home: NextPage = () => {
     });
   }, []);
 
-  console.log(messagesState);
+  const formattedMessagesMemo = useMemo(() => {
+    let newFormattedMessagesMemo = messagesState;
+
+    if (userNameState !== "All") {
+      newFormattedMessagesMemo = newFormattedMessagesMemo.filter(
+        (element) => element.userName === userNameState
+      );
+    }
+
+    return newFormattedMessagesMemo;
+  }, [userNameState, messagesState.length]);
+
+  const formattedWordsMemo = useMemo(() => {
+    let newFormattedWordsMemo = wordsState;
+
+    newFormattedWordsMemo = newFormattedWordsMemo.filter(
+      (element) =>
+        element.userName === userNameState &&
+        element.value !== " " &&
+        element.value !== ""
+    );
+
+    newFormattedWordsMemo.sort((firstElement, secondElement) => {
+      if (firstElement.count < secondElement.count) {
+        return 1;
+      } else if (firstElement.count > secondElement.count) {
+        return -1;
+      } else {
+        return 0;
+      }
+    });
+
+    return newFormattedWordsMemo;
+  }, [userNameState, wordsState.length]);
 
   return (
     <Fragment>
       <Header />
       <ConstrainedContent>
         <Tabs>
-          <TabsItem value="All" />
           {usersState.map((element) => {
-            return <TabsItem key={element.name} value={element.name} />;
+            const isActive = userNameState === element.name;
+            console.log(element.name, isActive);
+
+            const handleClick = () => {
+              setUserNameState(element.name);
+            };
+
+            return (
+              <TabsItem
+                isActive={isActive}
+                key={element.name}
+                value={element.name}
+                onClick={handleClick}
+              />
+            );
           })}
         </Tabs>
 
         <Messages>
-          {messagesState.map((element) => {
+          {formattedMessagesMemo.map((element) => {
             return (
               <MessagesItem
                 key={element.date}
@@ -143,10 +191,11 @@ const Home: NextPage = () => {
         </Messages>
 
         <Words>
-          {wordsState.map((element) => {
+          {formattedWordsMemo.map((element) => {
+            const key = element.userName + element.value;
             return (
               <WordsItem
-                key={element.value}
+                key={key}
                 value={element.value}
                 count={element.count}
               />

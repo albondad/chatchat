@@ -1,28 +1,28 @@
 import { StyledDiv } from "./tabs-item.styled-components";
-import { ComponentProps } from "react";
+import { ComponentProps, useMemo } from "react";
+import classNames from "classnames";
 
 type TabsItemPropsType = {
   valueProp?: string;
+  onClick: () => any;
+  isActive?: boolean;
 } & ComponentProps<typeof StyledDiv>;
 
 export const TabsItem = ({
+  className: classNameProp,
+  isActive: isActiveProp,
+  onClick: onClickProp,
   value: valueProp,
-  ...restProps
 }: TabsItemPropsType) => {
-  const handleClick = () => {
-    const baseEvent = new Event("click");
-    const formattedEvent = {
-      ...baseEvent,
-      target: {
-        ...baseEvent.target,
-        value: valueProp,
-      },
-    };
-    return formattedEvent;
-  };
+  const classNameMemo = useMemo(() => {
+    const newclassNameMemo = classNames("tabs-item", classNameProp, {
+      "tabs-item--is-active": isActiveProp,
+    });
+    return newclassNameMemo;
+  }, [classNameProp, isActiveProp]);
 
   return (
-    <StyledDiv className="tabs-item" tabIndex={0} onClick={handleClick}>
+    <StyledDiv className={classNameMemo} tabIndex={0} onClick={onClickProp}>
       {valueProp}
     </StyledDiv>
   );

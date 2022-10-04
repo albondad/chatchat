@@ -8,10 +8,10 @@ export const ConstrainedContent = ({
   className: classNameProp,
   ...restProps
 }: ConstrainedContentPropsType) => {
-  const classNamesMemo = useMemo(() => {
-    const newClassNamesMemo = classNames("constrained-content", classNameProp);
-    return newClassNamesMemo;
+  const classNameMemo = useMemo(() => {
+    const newclassNameMemo = classNames("constrained-content", classNameProp);
+    return newclassNameMemo;
   }, [classNameProp]);
 
-  return <StyledDiv className={classNamesMemo} {...restProps} />;
+  return <StyledDiv className={classNameMemo} {...restProps} />;
 };

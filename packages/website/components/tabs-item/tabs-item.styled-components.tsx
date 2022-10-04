@@ -9,5 +9,18 @@ export const StyledDiv = styled.div`
     font-size: 1.125rem;
     height: 4rem;
     justify-content: center;
+    cursor: pointer;
+
+    :hover {
+      opacity: 0.5;
+      background-color: #6176e5;
+      color: #ffffff;
+    }
+  }
+
+  &.tabs-item.tabs-item--is-active {
+    background-color: #6176e5;
+    color: #ffffff;
+    pointer-events: none;
   }
 `;
