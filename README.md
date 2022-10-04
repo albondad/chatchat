@@ -2,6 +2,10 @@
 
 This repository contains the source code for the web application ChatChat, which is my solution for Arrive Logistic's coding problem.
 
+# How to Run the Project
+
+`cd packages/website && yarn dev`
+
 # About the Process
 
 I started by reading the requirements provided and going to Figma to design a simple layout for the UI to fulfill the requirements. Then I broke down the project into a series of small steps that I could slow progress through, where each step would be something like adding a componenent, setting up state management for data, bug fixes, and cleaning up code. Once I finished up the MVP, I went ahead and deployed the project on the web for accessibility.
