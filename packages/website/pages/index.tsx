@@ -1,7 +1,4 @@
-import type { NextPage } from "next";
 import {
-  Cards,
-  CardsItem,
   ConstrainedContent,
   Header,
   Heading,
@@ -13,6 +10,7 @@ import {
 } from "../components";
 import { Fragment, useEffect, useState, useMemo } from "react";
 import { WordsItem } from "../components/words-item";
+import type { NextPage } from "next";
 
 const Home: NextPage = () => {
   const [messagesState, setMessagesState] = useState<

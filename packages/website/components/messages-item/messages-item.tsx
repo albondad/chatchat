@@ -17,7 +17,6 @@ export const MessagesItem = ({
     <StyledDiv className="messages-item" {...restProps}>
       <div className="messages-item__header">
         <span className="messages-item__userName">{userNameProp}</span>
-        <span className="messages-item__date">{dateProp}</span>
       </div>
       <div className="messages-item__message">{messageProp}</div>
     </StyledDiv>

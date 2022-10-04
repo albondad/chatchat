@@ -15,13 +15,6 @@ export const StyledDiv = styled.div`
         font-weight: 700;
         line-height: 1.5em;
       }
-
-      .messages-item__date {
-        color: #777777;
-        font-size: 1rem;
-        line-height: 1.5em;
-        margin-left: auto;
-      }
     }
 
     .messages-item__message {
