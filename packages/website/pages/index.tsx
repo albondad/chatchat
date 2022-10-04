@@ -1,7 +1,6 @@
 import {
   ConstrainedContent,
   Header,
-  Heading,
   Messages,
   MessagesItem,
   Tabs,
@@ -13,6 +12,7 @@ import { WordsItem } from "../components/words-item";
 import type { NextPage } from "next";
 
 const Home: NextPage = () => {
+  // handle setting up state variables
   const [messagesState, setMessagesState] = useState<
     {
       userName: string;
@@ -37,6 +37,7 @@ const Home: NextPage = () => {
 
   const [userNameState, setUserNameState] = useState("All");
 
+  // handle setting up sucket
   useEffect(() => {
     const socket = new WebSocket("wss://tso-take-home-chat-room.herokuapp.com");
 
@@ -46,12 +47,7 @@ const Home: NextPage = () => {
       const date = event.timeStamp;
       const words: string[] = message.replace(".", "").split(" ");
 
-      if (messagesState.length >= 100) {
-        socket.close();
-        return;
-      }
-
-      // update message state
+      // handle updating messagesState variable
       messagesState.unshift({
         userName: userName,
         date: date,
@@ -60,7 +56,7 @@ const Home: NextPage = () => {
 
       setMessagesState([...messagesState]);
 
-      // update users state
+      // handle updating usersState variable
       const hasUserName = !!usersState.find(
         (usersStateElement) => usersStateElement.name === userName
       );
@@ -73,8 +69,9 @@ const Home: NextPage = () => {
 
       setUsersState([...usersState]);
 
-      // update words state
+      // handle updating wordsState variable
       words.forEach((wordsElement) => {
+        // handle keeping track of word occurences by username
         const currentWordsStateElement = wordsState.find(
           (wordsStateElement) =>
             wordsStateElement.value === wordsElement &&
@@ -93,6 +90,7 @@ const Home: NextPage = () => {
           currentWordsStateElement.count++;
         }
 
+        // handle keeping track of all word occurences
         const currentWordsStateElementWithAllUserName = wordsState.find(
           (wordsStateElement) =>
             wordsStateElement.value === wordsElement &&
@@ -112,10 +110,12 @@ const Home: NextPage = () => {
           currentWordsStateElementWithAllUserName.count++;
         }
       });
+
       setWordsState([...wordsState]);
     });
   }, []);
 
+  // handle setting up memo variables
   const formattedMessagesMemo = useMemo(() => {
     let newFormattedMessagesMemo = messagesState;
 
@@ -131,6 +131,7 @@ const Home: NextPage = () => {
   const formattedWordsMemo = useMemo(() => {
     let newFormattedWordsMemo = wordsState;
 
+    // handle filtering out unecessary elements
     newFormattedWordsMemo = newFormattedWordsMemo.filter(
       (element) =>
         element.userName === userNameState &&
@@ -138,6 +139,7 @@ const Home: NextPage = () => {
         element.value !== ""
     );
 
+    // handle sorting elements by count
     newFormattedWordsMemo.sort((firstElement, secondElement) => {
       if (firstElement.count < secondElement.count) {
         return 1;
@@ -175,7 +177,7 @@ const Home: NextPage = () => {
           })}
         </Tabs>
 
-        <Messages>
+        <Messages heading={`Messages (${formattedMessagesMemo.length})`}>
           {formattedMessagesMemo.map((element) => {
             return (
               <MessagesItem
@@ -188,7 +190,7 @@ const Home: NextPage = () => {
           })}
         </Messages>
 
-        <Words>
+        <Words heading={`Words (${formattedWordsMemo.length})`}>
           {formattedWordsMemo.map((element) => {
             const key = element.userName + element.value;
             return (
