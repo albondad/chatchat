@@ -23,10 +23,11 @@ I started by reading the requirements provided and going to Figma to design a si
 - I can work with React hooks.
 - I can build my own custom React components.
 - I can work with version control systems like Git and GitHub.
-- I have experience working with Node and Node Modules.
+- I'm aware and can develop applications to be responsive.
 - I can consume web sockets.
 - I can work with Typescript.
 - I can build my own CSS and work with existing CSS conventions like BEM CSS.
+- I have experience working with Node.js and Node Modules.
 
 # Things That Could Have Been Improved
 
