@@ -22,6 +22,8 @@ I started by reading the requirements provided and going to Figma to design a si
 - I can work with React and React related libraries (eg. Next.js, styled-components, classnames, etc.)
 - I can work with React hooks.
 - I can build my own custom React components.
+- I can work with version control systems like Git and GitHub.
+- I have experience working with Node and Node Modules.
 - I can consume web sockets.
 - I can work with Typescript.
 - I can build my own CSS and work with existing CSS conventions like BEM CSS.
@@ -29,6 +31,7 @@ I started by reading the requirements provided and going to Figma to design a si
 # Things That Could Have Been Improved
 
 - I would have wanted to spend more time in the UI design just to make the web application look a little less bland.
+- I would have wanted to add extra UI to toggle starting and stopping the connection to the web socket.
 - I would have wanted to add extra error handling on the web socket to catch any errors.
 - I would have wanted to add extra statisitcs to display to fill up the web page and engage with the user more.
 - I would have split the sections into their own components, just to reduce the code that was being returned in the index.tsx page component.
