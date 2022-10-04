@@ -4,4 +4,5 @@ export * from "./messages-item";
 export * from "./messages";
 export * from "./tabs-item";
 export * from "./tabs";
+export * from "./words-item";
 export * from "./words";

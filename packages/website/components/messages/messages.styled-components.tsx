@@ -6,9 +6,9 @@ export const StyledDiv = styled.div`
     border-radius: 0.5rem;
     border: 1px solid #dddddd;
     flex-grow: 1;
+    margin-bottom: 2rem;
     padding: 1.5rem;
     position: relative;
-    margin-bottom: 2rem;
 
     .messages__heading {
       font-size: 1.25rem;

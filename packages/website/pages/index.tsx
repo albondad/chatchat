@@ -6,9 +6,9 @@ import {
   Tabs,
   TabsItem,
   Words,
+  WordsItem,
 } from "../components";
 import { Fragment, useEffect, useState, useMemo } from "react";
-import { WordsItem } from "../components/words-item";
 import type { NextPage } from "next";
 
 const Home: NextPage = () => {

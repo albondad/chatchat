@@ -1,9 +1,8 @@
-import { StyledDiv } from "./tabs-item.styled-components";
 import { ComponentProps, useMemo } from "react";
+import { StyledDiv } from "./tabs-item.styled-components";
 import classNames from "classnames";
 
 type TabsItemPropsType = {
-  valueProp?: string;
   onClick: () => any;
   isActive?: boolean;
 } & ComponentProps<typeof StyledDiv>;

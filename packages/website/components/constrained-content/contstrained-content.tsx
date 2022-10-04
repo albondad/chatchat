@@ -1,8 +1,8 @@
-import { StyledDiv } from "./constrained-content.styled-components";
 import { ComponentProps, useMemo } from "react";
+import { StyledDiv } from "./constrained-content.styled-components";
 import classNames from "classnames";
 
-type ConstrainedContentPropsType = ComponentProps<typeof StyledDiv> & {};
+type ConstrainedContentPropsType = {} & ComponentProps<typeof StyledDiv>;
 
 export const ConstrainedContent = ({
   className: classNameProp,
