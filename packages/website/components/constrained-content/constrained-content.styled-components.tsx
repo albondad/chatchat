@@ -5,7 +5,7 @@ export const StyledDiv = styled.div`
     box-sizing: border-box;
     margin: 0 auto;
     max-width: 90rem;
-    padding: 0 4rem;
+    padding: 0 1rem;
     width: 100%;
   }
 `;
