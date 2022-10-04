@@ -53,14 +53,14 @@ const Home: NextPage = () => {
     return newMessagesCountMemo;
   }, [messagesState.length]);
 
-  const charactersCountMemo = useMemo(() => {
-    let newCharactersCountMemo = 0;
+  const wordCountMemo = useMemo(() => {
+    let newWordcountMemo = 0;
 
     messagesState.forEach((element) => {
-      newCharactersCountMemo += element.message.length;
+      newWordcountMemo += element.message.split(" ").length;
     });
 
-    return newCharactersCountMemo;
+    return newWordcountMemo;
   }, [messagesState.length]);
 
   return (
@@ -80,8 +80,8 @@ const Home: NextPage = () => {
             detail="Filtered by: All Users"
           />
           <CardsItem
-            heading="Characters"
-            value={charactersCountMemo}
+            heading="Words"
+            value={wordCountMemo}
             detail="Filtered by: All Users"
           />
         </Cards>
@@ -90,6 +90,7 @@ const Home: NextPage = () => {
           {messagesState.map((element) => {
             return (
               <MessagesItem
+                key={element.date}
                 user={element.user}
                 message={element.message}
                 date={element.date}
