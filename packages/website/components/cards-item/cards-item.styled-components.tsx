@@ -4,7 +4,7 @@ export const StyledDiv = styled.div`
   &.cards-item {
     background-color: #ffffff;
     border-radius: 0.5rem;
-    border: 1px solid #eeeeee;
+    border: 1px solid #dddddd;
     flex-grow: 1;
     padding: 1.5rem;
     position: relative;
@@ -28,7 +28,7 @@ export const StyledDiv = styled.div`
     }
 
     .cards-item__detail {
-      color: #aaaaaa;
+      color: #777777;
       font-size: 0.875rem;
       font-weight: 400;
       line-height: 1.5em;

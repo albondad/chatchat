@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const StyledDiv = styled.div`
-  &.messages {
+  &.words {
     background-color: #ffffff;
     border-radius: 0.5rem;
     border: 1px solid #dddddd;
@@ -10,14 +10,14 @@ export const StyledDiv = styled.div`
     position: relative;
     margin-bottom: 2rem;
 
-    .messages__heading {
+    .words__heading {
       font-size: 1.25rem;
       font-weight: 700;
       line-height: 1.5em;
       margin-bottom: 2rem;
     }
 
-    .messages__body {
+    .words__body {
       max-height: 40vh;
       overflow-y: auto;
     }
